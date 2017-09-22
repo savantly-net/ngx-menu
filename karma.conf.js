@@ -1,10 +1,11 @@
 var path = require('path');
 
-var webpackConfig = require('./webpack.config');
-
 var ENV = process.env.npm_lifecycle_event;
 var isTestWatch = ENV === 'test-watch';
 var isWin = /^win/.test(process.platform);
+var testFilePattern = './dist/**/*.spec.js';
+var karmaShim = './karma-shim.js';
+
 
 module.exports = function (config) {
   var _config = {
@@ -15,10 +16,11 @@ module.exports = function (config) {
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
+    
     // list of files / patterns to load in the browser
     files: [
-      { pattern: './karma-shim.js', watched: false }
+    	{ pattern: karmaShim, watched: false},
+        { pattern: testFilePattern, watched: false }
     ],
 
     // list of files to exclude
@@ -27,20 +29,22 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './karma-shim.js': ['webpack', 'sourcemap']
+    	[karmaShim]: [ 'rollup', 'sourcemap' ],
+    	[testFilePattern]: [ 'rollup', 'sourcemap' ]
     },
-
-    webpack: webpackConfig,
-
-    webpackMiddleware: {
-      // webpack-dev-middleware configuration
-      // i. e.
-      stats: 'errors-only'
-    },
-
-    webpackServer: {
-      noInfo: true // please don't spam the console when running in karma!
-    },
+    
+    rollupPreprocessor: {
+    	plugins: [
+			require('rollup-plugin-node-resolve')({
+				browser: true
+			}),
+			require('rollup-plugin-commonjs')()
+		],
+		format: 'umd',         // Helps prevent naming collisions.
+		name: 'ngxLibrary', // Required for 'iife' format.
+		sourcemap: 'inline'     // Sensible for testing.
+	},
+	
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'mocha'

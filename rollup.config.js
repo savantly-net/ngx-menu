@@ -3,7 +3,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import pkgGen from 'rollup-plugin-pkg-generator';
 import pkg from './package.json';
 
-//Add here external dependencies that actually you use.
+// Add here external dependencies that actually you use.
+// This will exclude them from the bundle
 const globals = {
 	'@angular/core' : 'ng.core',
 	'@angular/core' : 'Injectable',
@@ -13,7 +14,8 @@ const globals = {
 	'@angular/router' : 'Router',
 	'rxjs/Observable' : 'Rx',
 	'rxjs/Observer' : 'Rx',
-	'rxjs/add/operator/map' : 'Rx'
+	'rxjs/add/operator/map' : 'Rx',
+	'jwt-decode' : 'decode'
 };
 
 function cleanName(name){
@@ -27,8 +29,9 @@ function cleanName(name){
 export default {
 	input : 'dist/index.js',
 	output : {
-		file : cleanName(pkg.name) + '.umd.js',
-		format : 'umd'
+		file : 'dist/' + cleanName(pkg.name) + '.umd.js',
+		format : 'umd',
+		exports: 'named'
 	},
 	sourcemap : true,
 	name : cleanName(pkg.name),
