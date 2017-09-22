@@ -1,9 +1,14 @@
+var resolve = require('rollup-plugin-node-resolve-angular');
+var commonjs = require('rollup-plugin-commonjs');
+var angular = require('rollup-plugin-angular');
+var typescript = require('rollup-plugin-typescript2');
+
 var path = require('path');
 
 var ENV = process.env.npm_lifecycle_event;
 var isTestWatch = ENV === 'test-watch';
 var isWin = /^win/.test(process.platform);
-var testFilePattern = './dist/**/*.spec.js';
+var testFilePattern = './src/**/*.spec.ts';
 var karmaShim = './karma-shim.js';
 
 
@@ -29,22 +34,40 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    	[karmaShim]: [ 'rollup', 'sourcemap' ],
-    	[testFilePattern]: [ 'rollup', 'sourcemap' ]
+    	[karmaShim]: ['rollup', 'sourcemap' ],
+    	[testFilePattern]: [ 'rollupTs', 'sourcemap' ]
     },
     
     rollupPreprocessor: {
+		format: 'umd',
+		name: 'ngxLibrary',
+		sourcemap: 'inline',
     	plugins: [
-			require('rollup-plugin-node-resolve')({
+			resolve({
 				browser: true
 			}),
-			require('rollup-plugin-commonjs')()
-		],
-		format: 'umd',         // Helps prevent naming collisions.
-		name: 'ngxLibrary', // Required for 'iife' format.
-		sourcemap: 'inline'     // Sensible for testing.
+			commonjs()
+		]
 	},
 	
+	customPreprocessors: {
+		// Clones the base preprocessor, but overwrites
+		// its options with those defined below...
+		rollupTs: {
+			base: 'rollup',
+			options: {
+				// In this case, to use a different transpiler:
+				plugins: [
+					angular(),
+		    		typescript(),
+					resolve({
+						browser: true
+					}),
+					commonjs()
+				]
+			}
+		}
+	},
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'mocha'
