@@ -1,6 +1,6 @@
 import { MdMenuModule, MdToolbarModule, MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SecurityModule } from '@savantly/ngx-security';
+import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuComponent } from './menu.component';
@@ -17,7 +17,7 @@ describe('MenuComponent', () => {
   beforeEach(async(() => {
     const test = TestBed.configureTestingModule({
       imports: [MenuModule, SecurityModule, MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule],
-      providers: [MenuService, {provide: APP_BASE_HREF, useValue: '/'}]
+      providers: [MenuService, SecurityService, {provide: APP_BASE_HREF, useValue: '/'}]
     })
 
     test.compileComponents();

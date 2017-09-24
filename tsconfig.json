@@ -3,8 +3,8 @@
 		"baseUrl": ".",
 		"declaration": true,
 		"stripInternal": true,
-		"target": "ES5",
-		"module": "commonjs",
+		"target": "es5",
+		"module": "es2015",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
@@ -16,11 +16,14 @@
 		"noUnusedParameters": true,
 		"skipLibCheck": true,
 		"paths": {
-			"@angular/core": [
-				"node_modules/@angular/core"
+			"@angular/*": [
+				"node_modules/@angular/*"
 			],
 			"rxjs/*": [
 				"node_modules/rxjs/*"
+			],
+			"@savantly/*" : [
+				"node_modules/@savantly/*"
 			]
         },
 		"lib": [
@@ -41,6 +44,7 @@
 	},
 	"angularCompilerOptions": {
 		"strictMetadataEmit": true,
+		"skipTemplateCodegen": true,
 		"genDir": "./aot"
     }
 }

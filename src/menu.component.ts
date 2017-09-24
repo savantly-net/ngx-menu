@@ -1,4 +1,4 @@
-import { SecurityModule } from '@savantly/ngx-security';
+import { SecurityService } from '@savantly/ngx-security';
 import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { MenuService, Menu, IMenu } from './menu.service';
 import { MdMenuTrigger } from '@angular/material';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class MenuComponent implements OnInit {
   @Input() items: any[];
   menuService: MenuService;
-  security: SecurityModule.SecurityService;
+  security: SecurityService;
   menus: Observable<Menu[]>;
 
   @ViewChildren(MdMenuTrigger) triggers: QueryList<MdMenuTrigger>;
@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
   };
 
   constructor(
-    securityService: SecurityModule.SecurityService,
+    securityService: SecurityService,
     menuService: MenuService) {
     this.menuService = menuService;
     this.security = securityService;

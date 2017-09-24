@@ -30,6 +30,10 @@ module.exports = function (config) {
 
     // list of files to exclude
     exclude: [],
+    
+    mime: {
+        'text/x-typescript': ['ts','tsx']
+	},
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -72,7 +76,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'mocha'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["mocha"],
+    reporters: ["spec"],
 
     // web server port
     port: 9876,
