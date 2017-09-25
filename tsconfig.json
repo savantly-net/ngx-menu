@@ -3,7 +3,7 @@
 		"baseUrl": ".",
 		"declaration": true,
 		"stripInternal": true,
-		"target": "es5",
+		"target": "es2015",
 		"module": "es2015",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
@@ -33,6 +33,7 @@
 		"rootDir": ".",
 		"outDir": "./dist"
 	},
+	"files": ["index.ts"],
 	"compileOnSave": false,
 	"buildOnSave": false,
 	"exclude": [
@@ -43,8 +44,9 @@
 		"useWebpackText": true
 	},
 	"angularCompilerOptions": {
-		"strictMetadataEmit": true,
-		"skipTemplateCodegen": true,
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": true,
+		"skipTemplateCodegen": false,
 		"genDir": "./aot"
     }
 }
