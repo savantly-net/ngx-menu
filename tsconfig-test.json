@@ -16,7 +16,7 @@
 		"noUnusedParameters": true,
 		"skipLibCheck": true,
 		"paths": {
-		  "jwt-decode/index": ["node_modules/jwt-decode/lib/index"]
+		  "jwt-decode/index": ["./node_modules/jwt-decode/lib/index"]
 	    },
         "lib": [
 		    "es2015",

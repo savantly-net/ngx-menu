@@ -64,11 +64,11 @@ module.exports = function (config) {
 				plugins: [
 					angular(),
 		    		typescript({tsconfig:'./tsconfig-test.json'}),
-					commonjs(),
 					resolve({
-						main: true,
+						jsnext: true,
 						module: true
-					})
+					}),
+					commonjs()
 				]
 			}
 		}
