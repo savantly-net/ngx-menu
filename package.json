@@ -1,6 +1,6 @@
 {
   "name": "@savantly/ngx-menu",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Menu service and component for an Angular app",
   "main": "index.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
@@ -15,12 +15,11 @@
     "clean-install": "npm run clean && npm install",
     "clean-start": "npm run clean-install && npm start",
     "docs": "typedoc --options typedoc.json src/app/app.component.ts",
-    "lint": "tslint --project tsconfig.json --force \"src/**/*.ts\"",
+    "lint": "tslint --project tsconfig-test.json --force \"./src/**/*.ts\"",
     "package": "rollup -c",
     "postinstall": "npm run update-webdriver",
     "posttest": "remap-istanbul -i coverage/json/coverage-final.json -o coverage/html -t html",
     "pretest": "rimraf aot dist && npm run lint",
-    "publish": "npm publish --prefix ./dist/",
     "test": "karma start",
     "test-watch": "karma start --no-single-run --auto-watch",
     "transpile": "ngc -p tsconfig.json",
@@ -47,6 +46,7 @@
     "@angular/material": "^2.0.0-beta.11",
     "@angular/router": "^4.4.3",
     "@savantly/ngx-security": "^1.1.5",
+    "jwt-decode": "^2.2.0",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17"
   },
@@ -64,8 +64,9 @@
     "@angular/platform-browser": "^4.4.3",
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
-    "@savantly/ngx-security": "^1.1.5",
+    "@savantly/ngx-security": "^1.1.7",
     "@types/jasmine": "^2.6.0",
+    "@types/jwt-decode": "^2.2.1",
     "@types/node": "^8.0.28",
     "@types/selenium-webdriver": "^3.0.7",
     "codelyzer": "^3.2.0",
@@ -106,8 +107,6 @@
     "zone.js": "^0.8.17"
   },
   "dependencies": {
-    "@savantly/ngx-security": "^1.1.6",
-    "@types/jwt-decode": "^2.2.1",
     "jwt-decode": "^2.2.0"
   }
 }

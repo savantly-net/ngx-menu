@@ -36,11 +36,11 @@ function copyFile(source, target, cb) {
 }
 
 var glob = require("glob");
-var files = glob.sync("./src/**.*");
+var files = glob.sync("(src/**/*!(*.ts)");
 
 files.map(function(file){
 	console.log('found file: ' + file);
-	copyFile(file, './dist/' + file, function(err){
+	copyFile(file, './dist/' + file.substr(4), function(err){
 	  if(err) {
         console.error(err);
         process.exit(1);
@@ -56,13 +56,14 @@ function cleanName(name){
 	return name;
 }
 
-const targetFolder = './dist/';
+const entryFile = './src/index.ts';
+const esFile = 'index.js';
 const bundleFile = cleanName(pkg.name) + '.umd.js';
-const moduleFile = 'index.js';
 const minFile = cleanName(pkg.name) + '.umd.min.js';
+const targetFolder = './dist/';
 
 var umdConfig = {
-		input : targetFolder + moduleFile,
+		input : entryFile,
 		output : {
 			file : targetFolder + bundleFile,
 			format : 'umd',
@@ -72,6 +73,7 @@ var umdConfig = {
 		name : bundleFile.split('.')[0].replace(/-/g, '_'),
 		plugins : [
 			angular(),
+			typescript(),
 			resolve({
 				jsnext: true,
 				main: true,
@@ -83,7 +85,7 @@ var umdConfig = {
 };
 
 var minifyConfig = {
-		input : targetFolder + moduleFile,
+		input : entryFile,
 		output : {
 			file : targetFolder + minFile,
 			format : 'umd',
@@ -93,6 +95,7 @@ var minifyConfig = {
 		name : minFile.split('.')[0].replace(/-/g, '_'),
 		plugins : [
 			angular(),
+			typescript(),
 			resolve({
 				jsnext: true,
 				main: true,
@@ -102,9 +105,9 @@ var minifyConfig = {
 			commonjs(),
 			uglify({}, minify),
 			pkgGen({pkg:{
-				main: moduleFile,
-				module: moduleFile,
-				"jsnext:main": moduleFile,
+				main: bundleFile,
+				module: esFile,
+				"jsnext:main": esFile,
 				browser: bundleFile,
 				dependencies: pkg.peerDependencies,
 				devDependencies: {},

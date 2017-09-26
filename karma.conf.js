@@ -63,11 +63,12 @@ module.exports = function (config) {
 				// In this case, to use a different transpiler:
 				plugins: [
 					angular(),
-		    		typescript(),
+		    		typescript({tsconfig:'./tsconfig-test.json'}),
+					commonjs(),
 					resolve({
-						browser: true
-					}),
-					commonjs()
+						main: true,
+						module: true
+					})
 				]
 			}
 		}
