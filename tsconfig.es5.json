@@ -3,29 +3,39 @@
 		"baseUrl": ".",
 		"declaration": true,
 		"stripInternal": true,
-		"target": "es2015",
-		"module": "CommonJs",
+		"target": "es5",
+		"module": "commonjs",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"strictNullChecks": true,
 		"noImplicitAny": true,
 		"sourceMap": true,
-		"noEmitHelpers": true,
+		"noEmitHelpers": false,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"skipLibCheck": true,
 		"paths": {
-		  "jwt-decode/index": ["./node_modules/jwt-decode/lib/index"]
-	    },
-        "lib": [
+			"*": [
+				"./node_modules/*"
+			]
+        },
+		"lib": [
 		    "es2015",
 			"dom"
-		]
-    },
+		],
+		"rootDir": "./src",
+		"outDir": "./es5"
+	},
+	"files":["./src/index.ts"],
     "compileOnSave": false,
 	"buildOnSave": false,
 	"exclude": [
     "./node_modules"
-    ]
+    ],
+	"angularCompilerOptions": {
+        "skipMetadataEmit": true,
+		"skipTemplateCodegen": true,
+		"debug": true
+    }
 }

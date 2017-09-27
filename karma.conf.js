@@ -43,9 +43,11 @@ module.exports = function (config) {
     },
     
     rollupPreprocessor: {
-		format: 'umd',
+		format: 'es',
 		name: 'ngxLibrary',
 		sourcemap: 'inline',
+		external: ['fs'],
+		globals: ['fs', 'require'],
     	plugins: [
 			resolve({
 				browser: true
@@ -60,13 +62,13 @@ module.exports = function (config) {
 		rollupTs: {
 			base: 'rollup',
 			options: {
+				exports: 'named',
 				// In this case, to use a different transpiler:
 				plugins: [
 					angular(),
-		    		typescript({tsconfig:'./tsconfig-test.json'}),
+		    		typescript(),
 					resolve({
-						jsnext: true,
-						module: true
+						main: true
 					}),
 					commonjs()
 				]
