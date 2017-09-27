@@ -27,7 +27,8 @@
 		"rootDir": "./src",
 		"outDir": "./dist"
 	},
-	"files":["./src/index.ts"],
+	"types": [],
+    "files":["./src/index.ts"],
     "compileOnSave": false,
 	"buildOnSave": false,
 	"exclude": [
@@ -37,6 +38,7 @@
         "annotateForClosureCompiler": true,
         "strictMetadataEmit": true,
 		"skipTemplateCodegen": true,
+		"flatModuleOutFile": "module.js",
 		"debug": true
     }
 }

@@ -4,14 +4,14 @@
 		"declaration": true,
 		"stripInternal": true,
 		"target": "es5",
-		"module": "commonjs",
+		"module": "umd",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"strictNullChecks": true,
 		"noImplicitAny": true,
 		"sourceMap": true,
-		"noEmitHelpers": false,
+		"noEmitHelpers": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"skipLibCheck": true,
@@ -21,11 +21,12 @@
 			]
         },
 		"lib": [
+		    "es5",
 		    "es2015",
-			"dom"
+		    "dom"
 		],
 		"rootDir": "./src",
-		"outDir": "./es5"
+		"outDir": "./build"
 	},
 	"files":["./src/index.ts"],
     "compileOnSave": false,
@@ -34,7 +35,7 @@
     "./node_modules"
     ],
 	"angularCompilerOptions": {
-        "skipMetadataEmit": true,
+        "strictMetadataEmit": true,
 		"skipTemplateCodegen": true,
 		"debug": true
     }

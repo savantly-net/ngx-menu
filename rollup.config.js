@@ -61,8 +61,8 @@ function cleanName(name){
 	return name;
 }
 
-const entryFile = './dist/index.js';
-const esFile = 'index.js';
+const entryFile = './build/index.js';
+const esFile = 'module.js';
 const bundleFile = cleanName(pkg.name) + '.umd.js';
 const minFile = cleanName(pkg.name) + '.umd.min.js';
 const targetFolder = './dist/';
@@ -83,8 +83,8 @@ var umdConfig = {
 				main: true,
 				browser: true
 			}),
-			autoExternal(),
-			commonjs()
+			commonjs(),
+			autoExternal()
 		],
 		external: Object.keys(globals),
 		globals: globals
@@ -106,14 +106,13 @@ var minifyConfig = {
 				main: true,
 				browser: true
 			}),
-			autoExternal(),
 			commonjs(),
+			autoExternal(),
 			uglify({}, minify),
 			pkgGen({pkg:{
 				main: bundleFile,
 				module: esFile,
 				"jsnext:main": esFile,
-				browser: bundleFile,
 				dependencies: pkg.peerDependencies,
 				devDependencies: {},
 				scripts: {},
