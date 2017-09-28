@@ -1,6 +1,7 @@
 import { IUser, SecurityService } from '@savantly/ngx-security';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 export const defaultMenuId = 'mainMenu';
 
@@ -117,7 +118,7 @@ export class MenuService {
     if (this.menuExists(menu.id)) {
       throw new Error ('Menu already exists with this id: ' + menu.id);
     } else {
-      let index = this.menus.push(menu);
+      const index = this.menus.push(menu);
       return this.menus[index - 1];
     }
   };
@@ -139,8 +140,8 @@ export class MenuService {
       if (menu.roles.indexOf('*') > -1) {
         return true;
       } else {
-        for (let userRoleIndex of this.user.roles) {
-          for (let roleIndex of menu.roles) {
+        for (const userRoleIndex of this.user.roles) {
+          for (const roleIndex of menu.roles) {
             if (menu.roles[<any>roleIndex] === this.user.roles[<any>userRoleIndex]) {
               return true;
             }
@@ -156,7 +157,7 @@ export class MenuService {
   constructor(security: SecurityService) {
     this.user = security.user;
     this.menus = [];
-    let mainMenu = new Menu({
+    const mainMenu = new Menu({
       id: 'mainMenu',
       text: 'Menu'});
     this.menus.push(mainMenu);

@@ -2,10 +2,10 @@ import { SecurityService } from '@savantly/ngx-security';
 import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { MenuService, Menu, IMenu } from './menu.service';
 import { MdMenuTrigger } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'my-menu',
+  selector: 'sprout-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
