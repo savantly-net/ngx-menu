@@ -5,7 +5,7 @@ import { MdMenuTrigger } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'sprout-menu',
+  selector: 'sv-menu',
   template: `
     <ng-container *ngFor="let item of menuService.getMenus() | async">
     	<ng-container *ngIf="menuService.shouldRender(item)">

@@ -50,7 +50,7 @@ export class MenuComponent {
 }
 MenuComponent.decorators = [
     { type: Component, args: [{
-                selector: 'sprout-menu',
+                selector: 'sv-menu',
                 template: `
     <ng-container *ngFor="let item of menuService.getMenus() | async">
     	<ng-container *ngIf="menuService.shouldRender(item)">

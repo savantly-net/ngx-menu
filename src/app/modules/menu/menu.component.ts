@@ -5,7 +5,7 @@ import { MdMenuTrigger } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'sprout-menu',
+  selector: 'sv-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })

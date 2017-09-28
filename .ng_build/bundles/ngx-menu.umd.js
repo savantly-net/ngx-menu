@@ -30465,7 +30465,7 @@ var MenuComponent = /** @class */ (function () {
 }());
 MenuComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'sprout-menu',
+                selector: 'sv-menu',
                 template: "\n    <ng-container *ngFor=\"let item of menuService.getMenus() | async\">\n    \t<ng-container *ngIf=\"menuService.shouldRender(item)\">\n    \t\t<button md-button [mdMenuTriggerFor]=\"menu\" #trigger=\"mdMenuTrigger\" [attr.data-level]=\"1\" (click)=\"openMenu(trigger, 1)\" (mouseexit)=\"$event.stopPropagation()\">\n    \t\t\t{{item.text}}\n    \t\t</button>\n    \t\t<md-menu class=\"custom-menu\" #menu=\"mdMenu\" [overlapTrigger]=\"false\" (close)=\"closeMenu()\" xPosition=\"after\">\n    \t\t\t<ng-container *ngTemplateOutlet=\"subMenu; context: { $implicit: item.items, level: 2 }\"></ng-container>\n    \t\t</md-menu>\n    \t</ng-container>\n    </ng-container>\n\n    <ng-template #subMenu let-items let-level=\"level\">\n      <ng-container *ngFor=\"let item of items\">\n        <ng-container *ngIf=\"item.items && item.items.length else simpleTmpl\">\n          <button *ngIf=\"!item.divider\" md-menu-item [disabled]=\"item.disabled\"\n                  [mdMenuTriggerFor]=\"menu\"\n                  #trigger=\"mdMenuTrigger\"\n                  [attr.data-level]=\"level\"\n                  (mouseenter)=\"openMenu(trigger, level);\" (click)=\"$event.stopPropagation()\">\n            <span>{{item.text}}</span>\n            <span *ngIf=\"item.extraText\">{{item.extraText}}</span>\n            <md-icon *ngIf=\"item.icon\">{{item.icon}}</md-icon>\n          </button>\n          <md-menu class=\"sub-menu\" #menu=\"mdMenu\" [overlapTrigger]=\"false\" xPosition=\"before\" >\n            <ng-container *ngTemplateOutlet=\"subMenu; context: { $implicit: item.items || [], level: level + 1 }\"></ng-container>\n          </md-menu>\n          <md-divider *ngIf=\"item.divider\" class=\"mat-divider\"></md-divider>\n        </ng-container>\n        <ng-template #simpleTmpl>\n          <button *ngIf=\"!item.divider\" md-menu-item [disabled]=\"item.disabled\" (click)=\"doMenuItemCallback(item, $event)\">\n            <span>{{item.text}}</span>\n            <span *ngIf=\"item.extraText\">{{item.extraText}}</span>\n          </button>\n          <md-divider *ngIf=\"item.divider\" class=\"mat-divider\"></md-divider>\n        </ng-template>\n      </ng-container>\n    </ng-template>\n  ",
                 styles: ["\n\n  "]
             },] },
@@ -33787,6 +33787,8 @@ MenuModule.decorators = [
  */
 MenuModule.ctorParameters = function () { return []; };
 
+exports.defaultMenuId = defaultMenuId;
+exports.Menu = Menu;
 exports.MenuService = MenuService;
 exports.MenuComponent = MenuComponent;
 exports.MenuModule = MenuModule;

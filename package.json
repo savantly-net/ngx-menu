@@ -2,7 +2,7 @@
   "name": "@savantly/ngx-menu",
   "version": "1.1.12",
   "description": "Menu service and component for an Angular app",
-  "main": "index.ts",
+  "main": "public_api.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "build": "ng build",
     "build:dev": "ng build --app dev",
     "build:lib": "ng-packagr",
-    "test": "ng test",
+    "test-watch": "ng test",
+    "test": "karma start --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "rimraf .ng_build dist"
@@ -43,21 +44,18 @@
   "devDependencies": {
     "@angular/animations": "^4.4.3",
     "@angular/cdk": "^2.0.0-beta.11",
+    "@angular/cli": "^1.4.3",
     "@angular/common": "^4.4.3",
+    "@angular/compiler": "^4.4.3",
+    "@angular/compiler-cli": "^4.4.3",
     "@angular/core": "^4.4.3",
     "@angular/flex-layout": "^2.0.0-beta.9",
     "@angular/forms": "^4.4.3",
     "@angular/http": "^4.4.3",
     "@angular/material": "^2.0.0-beta.11",
-    "@angular/router": "^4.4.3",
-    "@savantly/ngx-security": "^1.1.12",
-    "rxjs": "^5.4.3",
-    "zone.js": "^0.8.17",
-    "@angular/cli": "^1.4.3",
-    "@angular/compiler": "^4.4.3",
-    "@angular/compiler-cli": "^4.4.3",
     "@angular/platform-browser": "^4.4.3",
     "@angular/platform-browser-dynamic": "^4.4.3",
+    "@angular/router": "^4.4.3",
     "@types/jasmine": "^2.6.0",
     "codelyzer": "^3.2.0",
     "core-js": "^2.5.1",
@@ -72,8 +70,12 @@
     "ng-packagr": "^1.2.0",
     "protractor": "^5.1.2",
     "rimraf": "^2.6.2",
+    "rxjs": "^5.4.3",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.2",
+    "zone.js": "^0.8.17"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@savantly/ngx-security": "^1.1.12"
+  }
 }

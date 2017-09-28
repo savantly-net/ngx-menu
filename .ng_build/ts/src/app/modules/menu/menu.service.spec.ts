@@ -3,8 +3,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SecurityService } from '@savantly/ngx-security';
 import { MenuComponent } from './menu.component';
 import { TestBed, inject } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
-TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 
 import { MenuService } from './menu.service';
 

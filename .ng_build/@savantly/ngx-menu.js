@@ -30195,7 +30195,7 @@ class MenuComponent {
 }
 MenuComponent.decorators = [
     { type: Component, args: [{
-                selector: 'sprout-menu',
+                selector: 'sv-menu',
                 template: `
     <ng-container *ngFor="let item of menuService.getMenus() | async">
     	<ng-container *ngIf="menuService.shouldRender(item)">
@@ -33640,5 +33640,5 @@ MenuModule.ctorParameters = () => [];
  * Generated bundle index. Do not edit.
  */
 
-export { MenuService, MenuComponent, MenuModule };
+export { defaultMenuId, Menu, MenuService, MenuComponent, MenuModule };
 //# sourceMappingURL=ngx-menu.js.map

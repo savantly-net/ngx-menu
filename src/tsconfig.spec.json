@@ -10,7 +10,7 @@
       "node"
     ],
     "paths": {
-      "@savantly/ngx-menu": [ "../dist/@savantly/ngx-menu" ]
+      "@savantly/ngx-menu": [ "../.ng_build/ts/ngx-menu" ]
     }
   },
   "files": [

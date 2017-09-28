@@ -111,7 +111,7 @@
     "component-selector": [
       true,
       "element",
-      "sprout",
+      "sv",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
