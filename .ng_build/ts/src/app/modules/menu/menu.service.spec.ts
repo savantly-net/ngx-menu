@@ -1,7 +1,7 @@
 import { MdMenuModule, MdToolbarModule, MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SecurityService } from '@savantly/ngx-security';
-import { MenuComponent } from './menu.component';
+import { SecurityModule} from '@savantly/ngx-security';
+import { MenuModule } from './menu.module';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MenuService } from './menu.service';
@@ -9,9 +9,10 @@ import { MenuService } from './menu.service';
 describe('MenuService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule],
-      providers: [MenuService, SecurityService],
-      declarations: [MenuComponent]
+      imports: [MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule,
+        SecurityModule.forRoot(), MenuModule.forRoot()],
+      providers: [],
+      declarations: []
     });
   });
 

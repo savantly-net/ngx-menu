@@ -3,6 +3,37 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 export const /** @type {?} */ defaultMenuId = 'mainMenu';
+/**
+ * @abstract
+ */
+export class IMenu {
+}
+function IMenu_tsickle_Closure_declarations() {
+    /** @type {?} */
+    IMenu.prototype.id;
+    /** @type {?} */
+    IMenu.prototype.text;
+    /** @type {?} */
+    IMenu.prototype.isPublic;
+    /** @type {?} */
+    IMenu.prototype.roles;
+    /** @type {?} */
+    IMenu.prototype.items;
+    /** @type {?} */
+    IMenu.prototype.position;
+    /** @type {?} */
+    IMenu.prototype.disabled;
+    /** @type {?} */
+    IMenu.prototype.icon;
+    /** @type {?} */
+    IMenu.prototype.callback;
+    /** @type {?} */
+    IMenu.prototype.addMenuItem;
+    /** @type {?} */
+    IMenu.prototype.removeMenuItem;
+    /** @type {?} */
+    IMenu.prototype.getMenuItem;
+}
 export class Menu {
     /**
      * @param {?} item

@@ -28,46 +28,6 @@ import { Http } from '@angular/http';
 import { forkJoin as forkJoin$1 } from 'rxjs/observable/forkJoin';
 import { _throw as _throw$1 } from 'rxjs/observable/throw';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
-var UserComponent = (function () {
-    function UserComponent() {
-    }
-    /**
-     * @return {?}
-     */
-    UserComponent.prototype.ngOnInit = function () {
-    };
-    return UserComponent;
-}());
-UserComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'app-user',
-                template: "\n    <p>\n      user works!\n    </p>\n",
-                styles: []
-            },] },
-];
-/**
- * @nocollapse
- */
-UserComponent.ctorParameters = function () { return []; };
-var SecurityModule = (function () {
-    function SecurityModule() {
-    }
-    return SecurityModule;
-}());
-SecurityModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule
-                ],
-                exports: [UserComponent],
-                declarations: [UserComponent],
-                providers: []
-            },] },
-];
-/**
- * @nocollapse
- */
-SecurityModule.ctorParameters = function () { return []; };
 var SecurityService = (function () {
     function SecurityService() {
         this.user = {
@@ -90,6 +50,65 @@ SecurityService.decorators = [
  * @nocollapse
  */
 SecurityService.ctorParameters = function () { return []; };
+var UserComponent = (function () {
+    function UserComponent() {
+    }
+    /**
+     * @return {?}
+     */
+    UserComponent.prototype.ngOnInit = function () {
+    };
+    return UserComponent;
+}());
+UserComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'app-user',
+                template: "\n    <p>\n      user works!\n    </p>\n",
+                styles: []
+            },] },
+];
+/**
+ * @nocollapse
+ */
+UserComponent.ctorParameters = function () { return []; };
+var SecurityModule = (function () {
+    /**
+     * @param {?} parentModule
+     */
+    function SecurityModule(parentModule) {
+        if (parentModule) {
+            throw new Error('SecurityModule is already loaded. Import it in the AppModule only');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    SecurityModule.forRoot = function () {
+        return {
+            ngModule: SecurityModule,
+            providers: [SecurityService]
+        };
+    };
+    return SecurityModule;
+}());
+SecurityModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                exports: [UserComponent],
+                declarations: [UserComponent],
+                providers: []
+            },] },
+];
+/**
+ * @nocollapse
+ */
+SecurityModule.ctorParameters = function () {
+    return [
+        { type: SecurityModule, decorators: [{ type: Optional }, { type: SkipSelf },] },
+    ];
+};
 var SecurityMockService = (function () {
     function SecurityMockService() {
         var _this = this;
@@ -202,6 +221,14 @@ RoleGaurdService.ctorParameters = function () {
     ];
 };
 var defaultMenuId = 'mainMenu';
+/**
+ * @abstract
+ */
+var IMenu = /** @class */ (function () {
+    function IMenu() {
+    }
+    return IMenu;
+}());
 var Menu = /** @class */ (function () {
     /**
      * @param {?} options
@@ -30442,12 +30469,10 @@ MdToolbarModule.ctorParameters = function () { return []; };
 var VERSION = new Version('2.0.0-beta.11');
 var MenuComponent = /** @class */ (function () {
     /**
-     * @param {?} securityService
      * @param {?} menuService
      */
-    function MenuComponent(securityService, menuService) {
+    function MenuComponent(menuService) {
         this.menuService = menuService;
-        this.security = securityService;
     }
     /**
      * @param {?} trigger
@@ -30498,7 +30523,6 @@ MenuComponent.decorators = [
  * @nocollapse
  */
 MenuComponent.ctorParameters = function () { return [
-    { type: SecurityService, },
     { type: MenuService, },
 ]; };
 MenuComponent.propDecorators = {
@@ -33791,15 +33815,36 @@ FlexLayoutModule.decorators = [
 ];
 FlexLayoutModule.ctorParameters = function () { return []; };
 var MenuModule = /** @class */ (function () {
-    function MenuModule() {
+    /**
+     * @param {?} parentModule
+     */
+    function MenuModule(parentModule) {
+        if (parentModule) {
+            throw new Error('MenuModule is already loaded. Import it in the AppModule only');
+        }
     }
+    /**
+     * @param {?=} __0
+     * @return {?}
+     */
+    MenuModule.forRoot = function (_e) {
+        var _f = (_e === void 0 ? { securityService: new SecurityService() } : _e).securityService, securityService = _f === void 0 ? SecurityService : _f;
+        return {
+            ngModule: MenuModule,
+            providers: [{
+                    provide: MenuService,
+                    useFactory: menuServiceFactory,
+                    deps: [SecurityService]
+                }]
+        };
+    };
     return MenuModule;
 }());
 MenuModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
-                    MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule
+                    MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule, SecurityModule
                 ],
                 exports: [MenuComponent],
                 declarations: [MenuComponent],
@@ -33809,9 +33854,18 @@ MenuModule.decorators = [
 /**
  * @nocollapse
  */
-MenuModule.ctorParameters = function () { return []; };
+MenuModule.ctorParameters = function () { return [
+    { type: MenuModule, decorators: [{ type: Optional }, { type: SkipSelf },] },
+]; };
+/**
+ * @param {?=} _securityService
+ * @return {?}
+ */
+function menuServiceFactory(_securityService) {
+    return new MenuService(_securityService);
+}
 /**
  * Generated bundle index. Do not edit.
  */
-export { defaultMenuId, Menu, MenuService, MenuComponent, MenuModule };
+export { defaultMenuId, IMenu, Menu, MenuService, MenuComponent, MenuModule, menuServiceFactory };
 //# sourceMappingURL=ngx-menu.es5.js.map

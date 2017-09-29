@@ -2,7 +2,7 @@ import { IUser, SecurityService } from '@savantly/ngx-security';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 export declare const defaultMenuId = "mainMenu";
-export interface IMenu {
+export declare abstract class IMenu {
     id: string;
     text: string;
     isPublic: boolean;

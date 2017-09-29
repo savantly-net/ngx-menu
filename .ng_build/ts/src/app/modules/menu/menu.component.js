@@ -1,15 +1,12 @@
-import { SecurityService } from '@savantly/ngx-security';
 import { Component, Input, ViewChildren } from '@angular/core';
 import { MenuService } from './menu.service';
 import { MdMenuTrigger } from '@angular/material';
 export class MenuComponent {
     /**
-     * @param {?} securityService
      * @param {?} menuService
      */
-    constructor(securityService, menuService) {
+    constructor(menuService) {
         this.menuService = menuService;
-        this.security = securityService;
     }
     /**
      * @param {?} trigger
@@ -99,7 +96,6 @@ MenuComponent.decorators = [
  * @nocollapse
  */
 MenuComponent.ctorParameters = () => [
-    { type: SecurityService, },
     { type: MenuService, },
 ];
 MenuComponent.propDecorators = {
@@ -120,8 +116,6 @@ function MenuComponent_tsickle_Closure_declarations() {
     MenuComponent.prototype.items;
     /** @type {?} */
     MenuComponent.prototype.menuService;
-    /** @type {?} */
-    MenuComponent.prototype.security;
     /** @type {?} */
     MenuComponent.prototype.menus;
     /** @type {?} */

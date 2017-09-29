@@ -4,46 +4,6 @@
 	(factory((global['ngx-menu'] = {}),global.ng.core,global.ng.common,global.ng.router,global.Rx,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx,global.Rx.Observable,global.Rx,global.ng.platformBrowser,global.Rx.Observable,global.Rx.Observable,global.ng.forms,global.ng.animations,global.Rx.Observable,global.ng.http,global.Rx.Observable,global.Rx.Observable,global.Rx));
 }(this, (function (exports,core,common,router,Observable,of,_finally,_catch,_do,map,filter,share,first,switchMap,startWith,debounceTime,auditTime,takeUntil,Subject,of$1,Subscription,platformBrowser,fromEvent,merge,forms,animations,defer,http,forkJoin,_throw,BehaviorSubject) { 'use strict';
 
-var UserComponent = (function () {
-    function UserComponent() {
-    }
-    /**
-     * @return {?}
-     */
-    UserComponent.prototype.ngOnInit = function () {
-    };
-    return UserComponent;
-}());
-UserComponent.decorators = [
-    { type: core.Component, args: [{
-                selector: 'app-user',
-                template: "\n    <p>\n      user works!\n    </p>\n",
-                styles: []
-            },] },
-];
-/**
- * @nocollapse
- */
-UserComponent.ctorParameters = function () { return []; };
-var SecurityModule = (function () {
-    function SecurityModule() {
-    }
-    return SecurityModule;
-}());
-SecurityModule.decorators = [
-    { type: core.NgModule, args: [{
-                imports: [
-                    common.CommonModule
-                ],
-                exports: [UserComponent],
-                declarations: [UserComponent],
-                providers: []
-            },] },
-];
-/**
- * @nocollapse
- */
-SecurityModule.ctorParameters = function () { return []; };
 var SecurityService = (function () {
     function SecurityService() {
         this.user = {
@@ -66,6 +26,65 @@ SecurityService.decorators = [
  * @nocollapse
  */
 SecurityService.ctorParameters = function () { return []; };
+var UserComponent = (function () {
+    function UserComponent() {
+    }
+    /**
+     * @return {?}
+     */
+    UserComponent.prototype.ngOnInit = function () {
+    };
+    return UserComponent;
+}());
+UserComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'app-user',
+                template: "\n    <p>\n      user works!\n    </p>\n",
+                styles: []
+            },] },
+];
+/**
+ * @nocollapse
+ */
+UserComponent.ctorParameters = function () { return []; };
+var SecurityModule = (function () {
+    /**
+     * @param {?} parentModule
+     */
+    function SecurityModule(parentModule) {
+        if (parentModule) {
+            throw new Error('SecurityModule is already loaded. Import it in the AppModule only');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    SecurityModule.forRoot = function () {
+        return {
+            ngModule: SecurityModule,
+            providers: [SecurityService]
+        };
+    };
+    return SecurityModule;
+}());
+SecurityModule.decorators = [
+    { type: core.NgModule, args: [{
+                imports: [
+                    common.CommonModule
+                ],
+                exports: [UserComponent],
+                declarations: [UserComponent],
+                providers: []
+            },] },
+];
+/**
+ * @nocollapse
+ */
+SecurityModule.ctorParameters = function () {
+    return [
+        { type: SecurityModule, decorators: [{ type: core.Optional }, { type: core.SkipSelf },] },
+    ];
+};
 var SecurityMockService = (function () {
     function SecurityMockService() {
         var _this = this;
@@ -178,6 +197,14 @@ RoleGaurdService.ctorParameters = function () {
     ];
 };
 var defaultMenuId = 'mainMenu';
+/**
+ * @abstract
+ */
+var IMenu = /** @class */ (function () {
+    function IMenu() {
+    }
+    return IMenu;
+}());
 var Menu = /** @class */ (function () {
     /**
      * @param {?} options
@@ -30418,12 +30445,10 @@ MdToolbarModule.ctorParameters = function () { return []; };
 var VERSION = new core.Version('2.0.0-beta.11');
 var MenuComponent = /** @class */ (function () {
     /**
-     * @param {?} securityService
      * @param {?} menuService
      */
-    function MenuComponent(securityService, menuService) {
+    function MenuComponent(menuService) {
         this.menuService = menuService;
-        this.security = securityService;
     }
     /**
      * @param {?} trigger
@@ -30474,7 +30499,6 @@ MenuComponent.decorators = [
  * @nocollapse
  */
 MenuComponent.ctorParameters = function () { return [
-    { type: SecurityService, },
     { type: MenuService, },
 ]; };
 MenuComponent.propDecorators = {
@@ -33767,15 +33791,36 @@ FlexLayoutModule.decorators = [
 ];
 FlexLayoutModule.ctorParameters = function () { return []; };
 var MenuModule = /** @class */ (function () {
-    function MenuModule() {
+    /**
+     * @param {?} parentModule
+     */
+    function MenuModule(parentModule) {
+        if (parentModule) {
+            throw new Error('MenuModule is already loaded. Import it in the AppModule only');
+        }
     }
+    /**
+     * @param {?=} __0
+     * @return {?}
+     */
+    MenuModule.forRoot = function (_e) {
+        var _f = (_e === void 0 ? { securityService: new SecurityService() } : _e).securityService;
+        return {
+            ngModule: MenuModule,
+            providers: [{
+                    provide: MenuService,
+                    useFactory: menuServiceFactory,
+                    deps: [SecurityService]
+                }]
+        };
+    };
     return MenuModule;
 }());
 MenuModule.decorators = [
     { type: core.NgModule, args: [{
                 imports: [
                     common.CommonModule,
-                    MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule
+                    MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule, SecurityModule
                 ],
                 exports: [MenuComponent],
                 declarations: [MenuComponent],
@@ -33785,13 +33830,24 @@ MenuModule.decorators = [
 /**
  * @nocollapse
  */
-MenuModule.ctorParameters = function () { return []; };
+MenuModule.ctorParameters = function () { return [
+    { type: MenuModule, decorators: [{ type: core.Optional }, { type: core.SkipSelf },] },
+]; };
+/**
+ * @param {?=} _securityService
+ * @return {?}
+ */
+function menuServiceFactory(_securityService) {
+    return new MenuService(_securityService);
+}
 
 exports.defaultMenuId = defaultMenuId;
+exports.IMenu = IMenu;
 exports.Menu = Menu;
 exports.MenuService = MenuService;
 exports.MenuComponent = MenuComponent;
 exports.MenuModule = MenuModule;
+exports.menuServiceFactory = menuServiceFactory;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

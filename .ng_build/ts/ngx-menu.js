@@ -1,5 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
-export { defaultMenuId, Menu, MenuService, MenuComponent, MenuModule } from './public_api';
+export { defaultMenuId, IMenu, Menu, MenuService, MenuComponent, MenuModule, menuServiceFactory } from './public_api';
 //# sourceMappingURL=ngx-menu.js.map

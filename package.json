@@ -1,6 +1,6 @@
 {
   "name": "@savantly/ngx-menu",
-  "version": "1.1.12",
+  "version": "1.1.23",
   "description": "Menu service and component for an Angular app",
   "main": "public_api.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
@@ -57,6 +57,7 @@
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
     "@types/jasmine": "^2.6.0",
+    "angular-ide": "^0.9.31",
     "codelyzer": "^3.2.0",
     "core-js": "^2.5.1",
     "cpr": "^2.2.0",
@@ -76,6 +77,6 @@
     "zone.js": "^0.8.17"
   },
   "dependencies": {
-    "@savantly/ngx-security": "^1.1.12"
+    "@savantly/ngx-security": "^1.1.14"
   }
 }

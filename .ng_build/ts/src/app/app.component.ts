@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MenuComponent, MenuService, Menu } from '@savantly/ngx-menu';
 
 @Component({
-  selector: 'app-root',
+  selector: 'sv-root',
   template: `
     <sv-menu></sv-menu>
   `,

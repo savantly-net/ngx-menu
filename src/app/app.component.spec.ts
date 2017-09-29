@@ -1,19 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
-import { SecurityModule, SecurityService } from '@savantly/ngx-security';
+import { SecurityModule } from '@savantly/ngx-security';
 import { AppComponent } from './app.component';
-import { MenuModule, MenuService } from '@savantly/ngx-menu';
+import { MenuModule } from '@savantly/ngx-menu';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SecurityModule,
-        MenuModule
+        SecurityModule.forRoot(),
+        MenuModule.forRoot()
       ],
       declarations: [
         AppComponent
       ],
-      providers: [SecurityService, MenuService]
+      providers: []
     }).compileComponents();
   }));
 

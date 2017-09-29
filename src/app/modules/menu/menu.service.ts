@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 
 export const defaultMenuId = 'mainMenu';
 
-export interface IMenu {
+export abstract class IMenu {
   id: string;
   text: string;
   isPublic: boolean;

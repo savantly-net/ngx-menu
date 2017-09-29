@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { MenuModule, MenuService } from '@savantly/ngx-menu';
-import { SecurityService } from '@savantly/ngx-security';
+import { MenuModule } from '@savantly/ngx-menu';
+import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 
 @NgModule({
   declarations: [
@@ -12,9 +12,10 @@ import { SecurityService } from '@savantly/ngx-security';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MenuModule
+    SecurityModule.forRoot(),
+    MenuModule.forRoot({securityService: SecurityService})
   ],
-  providers: [MenuService, SecurityService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
