@@ -17,7 +17,7 @@
       "dom"
     ],
     "paths": {
-      "@savantly/ngx-menu": [ "./.ng_build/ts/ngx-menu"]
+      "@angular/*": [ "./node_modules/@angular/*"]
     }
   },
   "exclude": [

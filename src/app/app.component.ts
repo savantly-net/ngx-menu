@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuComponent, MenuService, Menu } from '@savantly/ngx-menu';
+import { MenuComponent, MenuService, Menu } from './modules/menu';
 
 @Component({
   selector: 'sv-root',

@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 
 export const defaultMenuId = 'mainMenu';
 
-export abstract class IMenu {
+export interface IMenu {
   id: string;
   text: string;
   isPublic: boolean;
@@ -14,7 +14,7 @@ export abstract class IMenu {
   position: number;
   disabled: boolean;
   icon: string;
-  callback: (event: any) => void;
+  callback: () => Promise<any>;
   addMenuItem: (item: any) => IMenu;
   removeMenuItem: (id: string) => boolean;
   getMenuItem: (id: string) => IMenu;
@@ -27,7 +27,7 @@ export class Menu implements IMenu {
   roles: string[];
   items: IMenu[];
   position: number;
-  callback: (event: any) => void;
+  callback: () => Promise<any>;
   disabled: boolean;
   icon: string;
 

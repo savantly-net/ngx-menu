@@ -2,14 +2,14 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { MenuService } from './menu.service';
-import { MdMenuModule, MdToolbarModule, MdButtonModule } from '@angular/material';
+import { MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 
 @NgModule({
   imports: [
     CommonModule,
-    MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule, SecurityModule
+    MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule, SecurityModule
   ],
   exports: [MenuComponent],
   declarations: [MenuComponent],
@@ -17,19 +17,22 @@ import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 })
 export class MenuModule {
 
-  static forRoot({securityService = SecurityService}: {securityService?: SecurityService}
-       = {securityService: new SecurityService()}): ModuleWithProviders {
+  static menuServiceFactory(_securityService?: SecurityService): MenuService {
+    return new MenuService(_securityService);
+  }
+
+  static forRoot(): ModuleWithProviders {
      return {
         ngModule: MenuModule,
         providers: [{
             provide: MenuService,
-            useFactory: menuServiceFactory,
+            useFactory: MenuModule.menuServiceFactory,
             deps: [SecurityService]
           }]
       };
   }
 
-  constructor (@Optional() @SkipSelf() parentModule: MenuModule) {
+  constructor (@Optional() @SkipSelf() parentModule: MenuModule, private securityService: SecurityService) {
     if (parentModule) {
       throw new Error(
         'MenuModule is already loaded. Import it in the AppModule only');
@@ -37,6 +40,3 @@ export class MenuModule {
   }
  }
 
-export function menuServiceFactory(_securityService?: SecurityService): MenuService {
-  return new MenuService(_securityService);
-}

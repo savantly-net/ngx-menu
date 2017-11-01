@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "angularCompilerOptions": {
+	"skipTemplateCodegen": true,
+	"debug": true
+  },
+  "compilerOptions": {
+    "outDir": "../out-tsc/lib",
+    "module": "es2015",
+    "baseUrl": "./src/app/modules/menu/",
+    "files": ["index.ts"]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}
