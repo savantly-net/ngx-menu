@@ -101,10 +101,9 @@ export class MenuService {
       });
     }
     if (response === null) {
-      throw new Error('Menu does not exist: ' + menuId);
-    } else {
-      return response;
+      console.warn('Menu does not exist: ' + menuId);
     }
+    return response;
   }
 
   // Get the menu object by menu id
@@ -157,10 +156,6 @@ export class MenuService {
   constructor(security: SecurityService) {
     this.user = security.user;
     this.menus = [];
-    const mainMenu = new Menu({
-      id: 'mainMenu',
-      text: 'Menu'});
-    this.menus.push(mainMenu);
   }
 
 }

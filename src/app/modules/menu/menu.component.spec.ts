@@ -1,4 +1,4 @@
-import { MdMenuModule, MdToolbarModule, MdButtonModule } from '@angular/material';
+import { MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SecurityModule } from '@savantly/ngx-security';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -12,7 +12,7 @@ describe('MenuComponent', () => {
 
   beforeEach(async(() => {
     const test = TestBed.configureTestingModule({
-      imports: [SecurityModule.forRoot(), MenuModule.forRoot(), MdMenuModule, MdToolbarModule, MdButtonModule, FlexLayoutModule],
+      imports: [SecurityModule.forRoot(), MenuModule.forRoot(), MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule],
       providers: []
     })
 

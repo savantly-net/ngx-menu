@@ -1,13 +1,13 @@
-<ng-container *ngIf="menuService.shouldRender(appMenu)">
-	<button mat-button [matMenuTriggerFor]="menu" #trigger="matMenuTrigger" [attr.data-level]="1" (mouseexit)="$event.stopPropagation()">
+<ng-container *ngIf="appMenu && menuService.shouldRender(appMenu)">
+	<button mat-button [matMenuTriggerFor]="svMenu" [attr.data-level]="1" (mouseexit)="$event.stopPropagation()">
 		{{appMenu.text}}
 	</button>
-	<mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="after">
-		<ng-container *ngTemplateOutlet="subMenu; context: { $implicit: appMenu.items, level: 2 }"></ng-container>
+	<mat-menu #svMenu [overlapTrigger]="false" xPosition="after">
+		<ng-container *ngTemplateOutlet="subMenu; context: { items: appMenu.items, level: 2 }"></ng-container>
 	</mat-menu>
 </ng-container>
 
-<ng-template #subMenu let-items let-level="level">
+<ng-template #subMenu let-items="items" let-level="level">
   <ng-container *ngFor="let item of items">
     <ng-container *ngIf="item.items && item.items.length else simpleTmpl">
       <button *ngIf="!item.divider" mat-menu-item [disabled]="item.disabled"
@@ -20,7 +20,7 @@
         <mat-icon *ngIf="item.icon">{{item.icon}}</mat-icon>
       </button>
       <mat-menu class="sub-menu" #menu="matMenu" [overlapTrigger]="false" xPosition="before" >
-        <ng-container *ngTemplateOutlet="subMenu; context: { $implicit: item.items || [], level: level + 1 }"></ng-container>
+        <ng-container *ngTemplateOutlet="subMenu; context: { items: item.items || [], level: level + 1 }"></ng-container>
       </mat-menu>
       <mat-divider *ngIf="item.divider" class="mat-divider"></mat-divider>
     </ng-container>

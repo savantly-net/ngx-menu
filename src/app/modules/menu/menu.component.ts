@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
     }
   };
 
-  constructor( private menuService: MenuService) {
+  constructor( protected menuService: MenuService) {
   }
 
   ngOnInit() {

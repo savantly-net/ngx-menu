@@ -1,6 +1,6 @@
 {
   "name": "@savantly/ngx-menu",
-  "version": "1.1.24",
+  "version": "1.2.0",
   "description": "Menu service and component for an Angular app",
   "main": "public_api.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
@@ -69,8 +69,8 @@
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^1.5.0-rc.1",
     "ngmakelib": "git+https://github.com/savantly-net/ngmakelib.git",
-    "ng-packagr": "^1.2.0",
     "protractor": "^5.1.2",
     "rimraf": "^2.6.2",
     "rxjs": "^5.4.3",
