@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { MenuModule } from './modules/menu';
 import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [];
+
 
 @NgModule({
   declarations: [
@@ -13,6 +16,7 @@ import { SecurityModule, SecurityService } from '@savantly/ngx-security';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     SecurityModule.forRoot(),
     MenuModule.forRoot()
   ],

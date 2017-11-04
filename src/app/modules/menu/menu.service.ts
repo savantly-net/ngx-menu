@@ -69,6 +69,9 @@ export class Menu implements IMenu {
     this.roles = options.roles || ['*'];
     this.text = options.text || 'unamed menu item';
     this.callback = options.callback;
+    this.disabled = options.disabled || false;
+    this.icon = options.icon || 'bookmark';
+    this.position = options.position || 0;
   }
 }
 

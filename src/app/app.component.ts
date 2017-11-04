@@ -17,11 +17,44 @@ export class AppComponent {
       items: [],
       position: 0,
       disabled: false,
-      icon: '',
+      icon: 'menu',
       callback: () => {}
     });
 
+    const subMenuItem = new Menu({
+      id: 'sub-example',
+      text: 'test submenu',
+      isPublic: true,
+      roles: ['*'],
+      items: [],
+      position: 0,
+      disabled: false,
+      icon: 'andriod',
+      callback: () => {console.log('submenu callback')}
+    });
+
+    const subSubMenuItem = new Menu({
+      id: 'sub-sub-example',
+      text: 'test sub submenu',
+      isPublic: true,
+      roles: ['*'],
+      items: [],
+      position: 0,
+      disabled: false,
+      icon: 'bookmark',
+      callback: () => {
+        console.log('subsubmenu callback');
+        return new Promise(function(resolve, reject){
+         resolve('done');
+        });
+      }
+    });
+
+    subMenuItem.items.push(subSubMenuItem);
+    menuItem.items.push(subMenuItem);
+
     menuService.addMenu(menuItem);
+    console.log(menuItem);
   }
 
 }

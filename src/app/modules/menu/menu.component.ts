@@ -16,12 +16,14 @@ export class MenuComponent implements OnInit {
     if (subitem.callback) {
       const promise = subitem.callback();
       if (promise) {
-        promise.then(function(){
-        console.log('completed callback');
-        $event.stopPropagation();
+        promise.then(function(value){
+          console.log('the promise returned from the callback was resolved with the value:', value);
+          $event.stopPropagation();
+        }).catch(function(err){
+          console.error('the promise returned from the callback was rejected', err);
         });
       } else {
-        console.log('no callback');
+        console.log('no promise return from the callback');
         $event.stopPropagation();
       }
     } else {

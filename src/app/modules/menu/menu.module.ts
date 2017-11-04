@@ -2,14 +2,16 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { MenuService } from './menu.service';
-import { MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule, SecurityModule
+    RouterModule,
+    MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, FlexLayoutModule, SecurityModule
   ],
   exports: [MenuComponent],
   declarations: [MenuComponent],
@@ -17,7 +19,7 @@ import { SecurityModule, SecurityService } from '@savantly/ngx-security';
 })
 export class MenuModule {
 
-  static menuServiceFactory(_securityService?: SecurityService): MenuService {
+  static menuServiceFactory(_securityService: SecurityService): MenuService {
     return new MenuService(_securityService);
   }
 
