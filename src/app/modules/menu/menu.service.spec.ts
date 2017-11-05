@@ -10,7 +10,7 @@ describe('MenuService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule,
-        SecurityModule.forRoot(), MenuModule.forRoot()],
+        SecurityModule.forRoot(), MenuModule],
       providers: [],
       declarations: []
     });

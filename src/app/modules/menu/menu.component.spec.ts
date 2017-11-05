@@ -12,7 +12,7 @@ describe('MenuComponent', () => {
 
   beforeEach(async(() => {
     const test = TestBed.configureTestingModule({
-      imports: [SecurityModule.forRoot(), MenuModule.forRoot(), MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule],
+      imports: [SecurityModule.forRoot(), MenuModule, MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule],
       providers: []
     })
 

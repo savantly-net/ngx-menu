@@ -18,12 +18,14 @@ const routes: Routes = [];
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     SecurityModule.forRoot(),
-    MenuModule.forRoot()
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
-  constructor(protected securityService: SecurityService) { }
+  constructor() {
+    console.log('Constructed AppModule');
+  }
 }

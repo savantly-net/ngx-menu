@@ -5,39 +5,36 @@ import { MenuService } from './menu.service';
 import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { SecurityModule, SecurityService } from '@savantly/ngx-security';
+import { SecurityService } from '@savantly/ngx-security';
+
+export function menuServiceFactory (_securityService: SecurityService): MenuService {
+  return new MenuService(_securityService);
+};
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, FlexLayoutModule, SecurityModule
+    MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, FlexLayoutModule
   ],
   exports: [MenuComponent],
   declarations: [MenuComponent],
-  providers: []
+  providers: [
+    {
+      provide: MenuService,
+      useFactory: menuServiceFactory,
+      deps: [SecurityService]
+    }
+  ]
 })
 export class MenuModule {
 
-  static menuServiceFactory(_securityService: SecurityService): MenuService {
-    return new MenuService(_securityService);
-  }
-
-  static forRoot(): ModuleWithProviders {
-     return {
-        ngModule: MenuModule,
-        providers: [{
-            provide: MenuService,
-            useFactory: MenuModule.menuServiceFactory,
-            deps: [SecurityService]
-          }]
-      };
-  }
-
-  constructor (@Optional() @SkipSelf() parentModule: MenuModule, private securityService: SecurityService) {
+  constructor (@Optional() @SkipSelf() parentModule: MenuModule) {
     if (parentModule) {
       throw new Error(
         'MenuModule is already loaded. Import it in the AppModule only');
+    } else {
+      console.log('Constructed MenuModule for child module')
     }
   }
  }

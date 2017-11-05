@@ -8,7 +8,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         SecurityModule.forRoot(),
-        MenuModule.forRoot()
+        MenuModule
       ],
       declarations: [
         AppComponent

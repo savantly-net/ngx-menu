@@ -1,6 +1,6 @@
 {
   "name": "@savantly/ngx-menu",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "Menu service and component for an Angular app",
   "main": "public_api.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
@@ -79,6 +79,7 @@
     "zone.js": "^0.8.17"
   },
   "dependencies": {
-    "@savantly/ngx-security": "^1.1.14"
+    "@savantly/ngx-security": "^1.1.14",
+    "npm": "^5.3.0"
   }
 }
