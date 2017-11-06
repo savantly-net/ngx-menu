@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MenuModule } from './modules/menu';
-import { SecurityModule, SecurityService } from '@savantly/ngx-security';
+import { SecurityModule, SecurityService, SecurityMockService } from '@savantly/ngx-security';
 
 import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [];
@@ -17,8 +17,8 @@ const routes: Routes = [];
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    SecurityModule.forRoot(),
-    MenuModule
+    SecurityModule.forRoot(new SecurityMockService()),
+    MenuModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

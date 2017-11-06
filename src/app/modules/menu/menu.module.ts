@@ -7,10 +7,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { SecurityService } from '@savantly/ngx-security';
 
-export function menuServiceFactory (_securityService: SecurityService): MenuService {
-  return new MenuService(_securityService);
-};
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,15 +15,22 @@ export function menuServiceFactory (_securityService: SecurityService): MenuServ
   ],
   exports: [MenuComponent],
   declarations: [MenuComponent],
-  providers: [
-    {
-      provide: MenuService,
-      useFactory: menuServiceFactory,
-      deps: [SecurityService]
-    }
-  ]
+  providers: []
 })
 export class MenuModule {
+
+  static forRoot(): ModuleWithProviders {
+    console.log('Creating MenuModule for Root');
+     return {
+        ngModule: MenuModule,
+        providers: [
+          {
+            provide: MenuService,
+            useClass: MenuService
+          }
+        ]
+      };
+  }
 
   constructor (@Optional() @SkipSelf() parentModule: MenuModule) {
     if (parentModule) {

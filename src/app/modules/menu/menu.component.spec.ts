@@ -1,10 +1,9 @@
 import { MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SecurityModule } from '@savantly/ngx-security';
+import { SecurityModule, SecurityMockService } from '@savantly/ngx-security';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuComponent } from './menu.component';
-import { MenuModule } from './menu.module';
+import { MenuService, MenuComponent } from '@savantly/ngx-menu';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -12,8 +11,8 @@ describe('MenuComponent', () => {
 
   beforeEach(async(() => {
     const test = TestBed.configureTestingModule({
-      imports: [SecurityModule.forRoot(), MenuModule, MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule],
-      providers: []
+      imports: [SecurityModule.forRoot(new SecurityMockService()), MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule],
+      providers: [MenuService]
     })
 
     test.compileComponents();

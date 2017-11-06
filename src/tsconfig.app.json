@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "@savantly/ngx-menu": [ "../.ng_build/ts/ngx-menu" ],
+      "@savantly/ngx-menu": [ "../dist/ngx-menu" ],
       "@angular/*": ["../node_modules/@angular/*"]
     }
   },
@@ -12,7 +12,7 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "@savantly/ngx-menu": [ "../.ng_build/ts/ngx-menu" ]
+      "@savantly/ngx-menu": [ "../dist/ngx-menu" ]
     }
   },
   "exclude": [

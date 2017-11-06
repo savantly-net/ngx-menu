@@ -17,6 +17,7 @@
       "dom"
     ],
     "paths": {
+      "@savantly/ngx-menu": [ "dist/@savantly" ],
       "@angular/*": [ "./node_modules/@angular/*"]
     }
   },

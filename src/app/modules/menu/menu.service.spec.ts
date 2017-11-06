@@ -1,16 +1,15 @@
 import { MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SecurityModule} from '@savantly/ngx-security';
-import { MenuModule } from './menu.module';
+import { SecurityModule, SecurityMockService } from '@savantly/ngx-security';
+import { MenuModule, MenuService, Menu } from '@savantly/ngx-menu';
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MenuService, Menu } from './index';
 
 describe('MenuService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule,
-        SecurityModule.forRoot(), MenuModule],
+        SecurityModule.forRoot(new SecurityMockService()), MenuModule.forRoot()],
       providers: [],
       declarations: []
     });
