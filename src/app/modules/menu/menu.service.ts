@@ -1,4 +1,4 @@
-import { IUser, SecurityService } from '@savantly/ngx-security';
+import { IUser, ISecurityService } from '@savantly/ngx-security';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -156,7 +156,7 @@ export class MenuService {
     return false;
   }
 
-  constructor(security: SecurityService) {
+  constructor(security: ISecurityService) {
     this.user = security.user;
     this.menus = [];
   }

@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { SecurityModule, SecurityMockService } from '@savantly/ngx-security';
+import { SecurityModule, SecurityMockService, ISecurityService } from '@savantly/ngx-security';
 import { AppComponent } from './app.component';
 import { MenuModule } from '@savantly/ngx-menu';
 
@@ -7,13 +7,16 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SecurityModule.forRoot(new SecurityMockService()),
+        SecurityModule,
         MenuModule.forRoot()
       ],
       declarations: [
         AppComponent
       ],
-      providers: []
+      providers: [{
+        provide: ISecurityService,
+        useClass: SecurityMockService
+      }]
     }).compileComponents();
   }));
 

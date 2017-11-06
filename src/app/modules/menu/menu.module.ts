@@ -5,7 +5,7 @@ import { MenuService } from './menu.service';
 import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { SecurityService } from '@savantly/ngx-security';
+import { ISecurityService } from '@savantly/ngx-security';
 
 @NgModule({
   imports: [

@@ -9,8 +9,8 @@ describe('MenuService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatMenuModule, MatToolbarModule, MatButtonModule, FlexLayoutModule,
-        SecurityModule.forRoot(new SecurityMockService()), MenuModule.forRoot()],
-      providers: [],
+        SecurityModule, MenuModule.forRoot()],
+      providers: [{provide: ISecurityService, useClass: SecurityMockService}],
       declarations: []
     });
   });
