@@ -157,6 +157,7 @@ export class MenuService {
   }
 
   constructor(security: ISecurityService) {
+    console.log('Constructing MenuService');
     this.user = security.user;
     this.menus = [];
   }

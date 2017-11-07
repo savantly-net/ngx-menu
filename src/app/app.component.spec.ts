@@ -1,22 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
 import { SecurityModule, SecurityMockService, ISecurityService } from '@savantly/ngx-security';
 import { AppComponent } from './app.component';
-import { MenuModule } from '@savantly/ngx-menu';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideRoutes } from '@angular/router';
+import { MenuModule, MenuService, menuServiceFactory } from '@savantly/ngx-menu';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SecurityModule,
-        MenuModule.forRoot()
-      ],
+      imports: [RouterTestingModule, MenuModule],
       declarations: [
         AppComponent
       ],
-      providers: [{
-        provide: ISecurityService,
-        useClass: SecurityMockService
-      }]
+      providers: [
+        provideRoutes([]),
+        {provide: ISecurityService, useClass: SecurityMockService},
+        {provide: MenuService, useFactory: menuServiceFactory, deps: [ISecurityService]}]
     }).compileComponents();
   }));
 

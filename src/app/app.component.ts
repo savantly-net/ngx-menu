@@ -50,11 +50,11 @@ export class AppComponent {
       }
     });
 
-    subMenuItem.items.push(subSubMenuItem);
-    menuItem.items.push(subMenuItem);
-
-    menuService.addMenu(menuItem);
-    console.log(menuItem);
+//    subMenuItem.items.push(subSubMenuItem);
+//    menuItem.items.push(subMenuItem);
+//
+//    menuService.addMenu(menuItem);
+//    console.log(menuItem);
   }
 
 }

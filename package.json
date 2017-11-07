@@ -68,6 +68,7 @@
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-spec-reporter": "0.0.31",
     "ng-packagr": "^1.5.0-rc.1",
     "ngmakelib": "git+https://github.com/savantly-net/ngmakelib.git",
     "protractor": "^5.1.2",
