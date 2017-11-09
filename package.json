@@ -79,7 +79,7 @@
     "zone.js": "^0.8.17"
   },
   "dependencies": {
-    "@savantly/ngx-security": "^1.2.3",
+    "@savantly/ngx-security": "^1.2.4",
     "npm": "^5.3.0"
   }
 }
