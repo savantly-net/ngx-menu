@@ -1,6 +1,6 @@
 {
   "name": "@savantly/ngx-menu",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Menu service and component for an Angular app",
   "main": "public_api.ts",
   "homepage": "https://github.com/savantly-net/ngx-menu",
