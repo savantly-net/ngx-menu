@@ -24,24 +24,7 @@ export const menuServiceFactory = function(securityService: ISecurityService){
 })
 export class MenuModule {
 
-  static forRoot(): ModuleWithProviders {
-     return {
-        ngModule: MenuModule,
-        providers: [
-          {
-            provide: MenuService,
-            useFactory: menuServiceFactory,
-            deps: [ISecurityService]
-          }
-        ]
-      };
-  }
+  constructor (@Optional() @SkipSelf() parentModule: MenuModule) { }
 
-  constructor (@Optional() @SkipSelf() parentModule: MenuModule) {
-    if (parentModule) {
-      throw new Error(
-        'MenuModule is already loaded. Import it in the AppModule only');
-    }
-  }
- }
+}
 
